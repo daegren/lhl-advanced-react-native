@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View, FlatList, Image } from "react-native";
 import MyView from "./components/MyView";
 import Header from "./components/Header";
+import SearchResults from "./components/SearchResults";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -17,13 +18,7 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Header onSearch={this._handleSearch} />
-        <FlatList
-          style={styles.main}
-          data={this.state.images}
-          renderItem={({ item }) => (
-            <Image style={styles.image} source={{ uri: item.url }} />
-          )}
-        />
+        <SearchResults images={this.state.images} />
       </View>
     );
   }
@@ -52,14 +47,5 @@ const styles = StyleSheet.create({
     paddingTop: 25,
     marginRight: 4,
     marginLeft: 4
-  },
-  main: {
-    flex: 1,
-    width: "100%"
-  },
-  image: {
-    width: 140,
-    height: 140,
-    margin: 20
   }
 });
